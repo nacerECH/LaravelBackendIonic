@@ -25,7 +25,7 @@ class AuthController extends BaseController
             if ($authUser->role === 'clt') {
                 $success['client'] = new ClientResource($authUser->client);
             } else {
-                $success['restaurant'] = new ClientResource($authUser->restaurant);
+                $success['restaurant'] = new RestaurantResource($authUser->restaurant);
             }
             $success['role'] = $authUser->role;
 
@@ -88,6 +88,7 @@ class AuthController extends BaseController
             'adresse' => 'required|string',
             'ville' => 'required|string',
             'email' => 'required|string|email|unique:users',
+            'telephone' => 'required|string',
             'password' => 'required|string',
             'confirmPassword' => 'required|same:password',
             'latitude' => 'required',
@@ -108,6 +109,7 @@ class AuthController extends BaseController
 
         $restaurant = new Restaurant();
         $restaurant->user_id = $user->id;
+        $restaurant->tel = $request->telephone;
         $restaurant->nom = $request->nomRestaurant;
         $restaurant->NomGerant = $request->nomGerant . " " . $request->prenomGerant;
         $restaurant->description = $request->description;
