@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Models\Plat;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+/*    testing la connectivitee avec la base de donnees
+Route::get('/testing', function () {
+
+        $menu = Plat::find(11);
+
+
+    return $menu->title;
+});
+*/

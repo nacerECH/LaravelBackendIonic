@@ -105,7 +105,12 @@ class CommandeController extends BaseController
      */
     public function show($id)
     {
-        //
+        try {
+            $success['commande'] = new CommandeResource(Commande::find($id));
+            return $this->sendResponse($success, 'plat found successfully.');
+        } catch (Exception $e) {
+            return $this->sendError('server Error', $e->getMessage());
+        }
     }
 
     /**
